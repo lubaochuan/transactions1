@@ -1,6 +1,4 @@
-##**Homework: SQL Transactions**
-
-### **SQL Practice**
+## **SQL Transactions**
 
 #### **Q1. Simple Transaction**
 
