@@ -34,6 +34,7 @@ UPDATE Accounts SET balance = balance - 100 WHERE account_id = 1;
 
 ```sql
 SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+START TRANSACTION;
 SELECT * FROM Accounts;
 ```
 
