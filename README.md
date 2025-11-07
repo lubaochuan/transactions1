@@ -16,7 +16,8 @@ INSERT INTO Accounts VALUES
 (2, 'Bob', 300.00);
 ```
 
-Write a transaction that transfers **$50 from Alice to Bob**, ensuring that either both balances update or neither does.
+Questions:
+1. Write a transaction that transfers **$50 from Alice to Bob**, ensuring that either both balances update or neither does.
 
 #### **Q2. Dirty Read**
 
@@ -38,6 +39,7 @@ START TRANSACTION;
 SELECT * FROM Accounts;
 ```
 
+Questions:
 1. What value does Transaction B see for Alice’s balance?
 2. What happens if Transaction A rolls back afterward?
 
@@ -46,11 +48,22 @@ SELECT * FROM Accounts;
 Use the following sequence:
 
 1. In Transaction A, `START TRANSACTION` and query Alice’s balance.
-2. In Transaction B, `UPDATE Accounts SET balance = balance + 20 WHERE account_id = 1; COMMIT;`
+```sql
+START TRANSACTION;
+SELECT balance FROM Accounts WHERE account_id = 1;
+```
+2. In Transaction B,
+```sql
+UPDATE Accounts SET balance = balance + 20 WHERE account_id = 1;
+```
 3. Re-run the same `SELECT` in Transaction A.
+```sql
+SELECT balance FROM Accounts WHERE account_id = 1;
+```
 
-Under **REPEATABLE READ**, what does Transaction A see?
-Under **READ COMMITTED**, what does it see?
+Questions:
+1. Under **REPEATABLE READ** (MySQL default), what does Transaction A see?
+2. Under **READ COMMITTED**, what does it see?
 
 #### **Q4. Serializability Challenge**
 
